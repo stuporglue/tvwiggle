@@ -7,6 +7,7 @@
 
 .wigglewrap {
     display: inline-block;
+    vertical-align: middle;
     margin: 0;
     text-align: center;
     padding: 20px;
@@ -18,15 +19,8 @@
     text-align: left;
 }
 
-.vspacer {
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-}
-
 .wiggleitem {
     display: inline-block;
-    vertical-align: center;
     border-radius: 8px;
     overflow: hidden;
     -webkit-box-shadow: 0px 1px 10px 3px rgba(176,176,176,0.65);
@@ -34,6 +28,7 @@
     box-shadow: 0px 1px 10px 3px  rgba(176,176,176,0.65);
 }
 
+/* Firefox wasn't rounding the images bottom corners without this */
 .wiggleitem img {
     display: block;
 }
