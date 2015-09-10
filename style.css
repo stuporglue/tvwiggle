@@ -6,14 +6,12 @@
 }
 
 .wigglewrap {
-    box-sizing: border-box;
     display: inline-block;
     margin: 0;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     width: 275px;
     height: 200px;
-    overflow: hidden;
 }
 
 .wigglewrap > * {
