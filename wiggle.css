@@ -1,0 +1,78 @@
+/* This file has just the wiggle animation in it*/
+
+/* Items start scaled down 0.85 and we set a transition to slide back to our 0.85 after wiggling*/
+
+.wiggleitem {
+    transition: transform 1s;
+    transform:scale(0.85);
+}
+
+
+/* On hover we start our wiggle animation */
+.wiggleitem:hover {
+    animation-name: tvwiggle;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;  
+}
+
+/* 
+ * Matrix3d values calculated using: http://ds-overdesign.com/transform/matrix3d.html 
+ *
+ * For an explanation, try these pages: 
+ *
+ * http://franklinta.com/2014/09/08/computing-css-matrix3d-transforms/
+ * https://dev.opera.com/articles/understanding-the-css-transforms-matrix/
+ *
+ * */
+@keyframes tvwiggle {
+    10% { 
+        /* Start by zooming to full scale */
+        transform:scale(1.0);
+    }
+    20% {
+        /* Top left corner down */
+        transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+    }
+    25% {
+        /* Left side down */
+        transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,0,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,0,0,0,1,0,0,0,0,1);
+    }
+    30% {
+        /* Bottom left corner down */
+        transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,-0.0001,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+    }
+    35% {
+        /* Bottom down */
+        transform: matrix3d(1,0,0.00,0,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,0,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+    }
+    40% {
+        /* Bottom right corner down */
+        transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,0.0001,0,0,1,0,0,0,0,1);
+    }
+    45% {
+        /* Right side down */
+        transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,0,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,0,0,0,1,0,0,0,0,1);
+    }
+    50% {
+        /* Top right corner down */
+        transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,0.0001,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+    }
+    55% {
+        /* Top down */
+        transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+        -webkit-transform: matrix3d(1,0,0.00,0,0.00,1,0.00,-0.0001,0,0,1,0,0,0,0,1);
+    }
+    60% {
+        transform:scale(1.0);
+    }
+    100% {
+        transform:scale(1.0);
+    }
+}

@@ -1,0 +1,11 @@
+.wiggleitem {
+    border: 1px solid blue;
+}
+
+.wiggleitem:hover {
+    border-color: red;
+}
+
+.wigglewrap {
+    border: 1px solid green;
+}

@@ -1,0 +1,41 @@
+/* The container for our wiggly stuff */
+.wigglerow {
+    box-sizing: border-box;
+    padding: 40px;
+    text-align: center;
+}
+
+.wigglewrap {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+    width: 275px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.wigglewrap > * {
+    text-align: left;
+}
+
+.vspacer {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.wiggleitem {
+    display: inline-block;
+    vertical-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 1px 10px 3px rgba(176,176,176,0.65);
+    -moz-box-shadow: 0px 1px 10px 3px rgba(176,176,176,0.65);
+    box-shadow: 0px 1px 10px 3px  rgba(176,176,176,0.65);
+}
+
+.wiggleitem img {
+    display: block;
+}

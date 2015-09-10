@@ -1,0 +1,23 @@
+.bgwiggle {
+    display: block;
+    background: transparent url('img/4.jpg') center center no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 150px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.textwiggle {
+    width: 250px;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.wigglerow {
+    border: 1px solid #ccc;
+}
