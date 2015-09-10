@@ -2,14 +2,18 @@
 
 /* Items start scaled down 0.85 and we set a transition to slide back to our 0.85 after wiggling*/
 
-.wiggleitem {
+.tvwiggle > div > div,
+.tvwiggle > li > div 
+{
     transition: transform 0.5s ease-in;
     transform:scale(1.0);
 }
 
 
 /* On hover we start our wiggle animation */
-.wiggleitem:hover {
+.tvwiggle > div > div:hover,
+.tvwiggle > li > div:hover 
+{
     animation-name: tvwiggle;
     animation-duration: 2.5s;
     animation-fill-mode: forwards;  

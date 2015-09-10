@@ -1,11 +1,13 @@
 /* The container for our wiggly stuff */
-.wigglerow {
+.tvwiggle {
     box-sizing: border-box;
     padding: 40px;
     text-align: center;
 }
 
-.wigglewrap {
+.tvwiggle > div,
+.tvwiggle > li 
+{
     display: inline-block;
     vertical-align: middle;
     margin: 0;
@@ -15,11 +17,15 @@
     height: 200px;
 }
 
-.wigglewrap > * {
+.tvwiggle > div > *,
+.tvwiggle > li > * 
+{
     text-align: left;
 }
 
-.wiggleitem {
+.tvwiggle > div > div,
+.tvwiggle > li > div 
+{
     display: inline-block;
     border-radius: 8px;
     overflow: hidden;
@@ -29,6 +35,8 @@
 }
 
 /* Firefox wasn't rounding the images bottom corners without this */
-.wiggleitem img {
+.tvwiggle > div > div img,
+.tvwiggle > li > div img
+{
     display: block;
 }
