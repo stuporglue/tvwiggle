@@ -2,23 +2,480 @@
 <html>
     <head>
         <title>Wiggle</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <link rel="stylesheet" type="text/css" href="wiggle.css" />
-        <link rel="stylesheet" type="text/css" href="page.css" />
-        <link rel="stylesheet" type="text/css" href="debug.css" />
+        <style type="text/css">
+            /* The container for our wiggly stuff */
+            .tvwiggle {
+                box-sizing: border-box;
+                padding: 40px;
+                text-align: center;
+                display: inline-block;
+            }
+
+            .tvwiggle > div,
+            .tvwiggle > li 
+            {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+                text-align: left;
+                padding: 20px;
+                width: 260px;
+                height: 260px;
+            }
+
+            .tvwiggle > div > *,
+            .tvwiggle > li > * 
+            {
+                text-align: left;
+            }
+
+            .tvwiggle > div > div,
+            .tvwiggle > li > div 
+            {
+                display: inline-block;
+                border-radius: 8px;
+                -webkit-box-shadow: 0px 1px 10px 3px rgba(176,176,176,0.65);
+                -moz-box-shadow: 0px 1px 10px 3px rgba(176,176,176,0.65);
+                box-shadow: 0px 1px 10px 3px  rgba(176,176,176,0.65);
+            }
+
+            /* Firefox wasn't rounding the images bottom corners without this */
+            .tvwiggle > div > div img,
+            .tvwiggle > li > div img
+            {
+                display: block;
+            }
+
+            .paralax img {
+                border-radius: 8px;
+            }
+
+            .paralax img:first-child {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+
+            /* This file has just the wiggle animation in it*/
+
+            /* Items start scaled down 0.85 and we set a transition to slide back to our 0.85 after wiggling*/
+
+            .tvwiggle > div > div,
+            .tvwiggle > li > div 
+            {
+                transition: transform 0.5s ease-in;
+                transform:scale(1.0);
+                -webkit-transition: transform 0.5s ease-in;
+                -webkit-transform:scale(1.0);
+            }
+
+
+            /* On hover we start our wiggle animation */
+            .tvwiggle > div > div:hover a.paralax img:nth-child(2),
+            .tvwiggle > li > div:hover  a.paralax img:nth-child(2)
+            {
+                animation-name: tvwiggle;
+                animation-duration: 2.5s;
+                animation-fill-mode: forwards;  
+
+                /* Thanks safari */
+                -webkit-animation-name: tvwiggle;
+                -webkit-animation-duration: 2.5s;
+                -webkit-animation-fill-mode: forwards;  
+                z-index: 1000;
+            }
+
+            .tvwiggle > div > div:hover a.paralax img:nth-child(1),
+            .tvwiggle > li > div:hover  a.paralax img:nth-child(1)
+            {
+                animation-name: tvwiggleparalax;
+                animation-duration: 2.5s;
+                animation-fill-mode: forwards;  
+
+                /* Thanks safari */
+                -webkit-animation-name: tvwiggleparalax;
+                -webkit-animation-duration: 2.5s;
+                -webkit-animation-fill-mode: forwards;  
+                z-index: 10000;
+            }
+
+
+            /* 
+            * Matrix3d values calculated using: http://ds-overdesign.com/transform/matrix3d.html 
+            *
+            * For an explanation, try these pages: 
+            *
+            * http://franklinta.com/2014/09/08/computing-css-matrix3d-transforms/
+            * https://dev.opera.com/articles/understanding-the-css-transforms-matrix/
+            *
+            * */
+            @keyframes tvwiggleparalax {
+                0% {
+                    transform:scale(1);
+                }
+                10% { 
+                    /* Start by zooming to full scale */
+                    transform:scale(1.25);
+                }
+                20% {
+                    /* Top left corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                25% {
+                    /* Left side down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                30% {
+                    /* Bottom left corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                35% {
+                    /* Bottom down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                40% {
+                    /* Bottom right corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                45% {
+                    /* Right side down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                50% {
+                    /* Top right corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                55% {
+                    /* Top down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                60% {
+                    transform:scale(1.25);
+                }
+                100% {
+                    transform:scale(1.25);
+                }
+            }
+
+            @keyframes tvwiggle {
+                0% {
+                    transform:scale(1);
+                }
+                10% { 
+                    /* Start by zooming to full scale */
+                    transform:scale(1.25);
+                }
+                20% {
+                    /* Top left corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    2,-2,0,1
+                    );
+                }
+                25% {
+                    /* Left side down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    2,0,0,1
+                    );
+                }
+                30% {
+                    /* Bottom left corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    2,2,0,1
+                    );
+                }
+                35% {
+                    /* Bottom down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    0,2,0,1
+                    );
+                }
+                40% {
+                    /* Bottom right corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    -2,2,0,1
+                    );
+                }
+                45% {
+                    /* Right side down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    -2,0,0,1
+                    );
+                }
+                50% {
+                    /* Top right corner down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    -2,-2,0,1
+                    );
+                }
+                55% {
+                    /* Top down */
+                    transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    0,-2,0,1
+                    );
+                }
+                60% {
+                    transform:scale(1.25);
+                }
+                100% {
+                    transform:scale(1.25);
+                }
+            }
+
+
+
+
+
+            @-webkit-keyframes tvwiggleparalax {
+                0% {
+                    -webkit-transform:scale(1);
+                }
+                10% { 
+                    /* Start by zooming to full scale */
+                    -webkit-transform:scale(1.25);
+                }
+                20% {
+                    /* Top left corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                25% {
+                    /* Left side down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                30% {
+                    /* Bottom left corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00005,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                35% {
+                    /* Bottom down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                40% {
+                    /* Bottom right corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                45% {
+                    /* Right side down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                50% {
+                    /* Top right corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00005,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                55% {
+                    /* Top down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,-0.00005,
+                    0,0,1,0,
+                    0,0,0,1
+                    );
+                }
+                60% {
+                    -webkit-transform:scale(1.25);
+                }
+                100% {
+                    -webkit-transform:scale(1.25);
+                }
+            }
+
+            @-webkit-keyframes tvwiggle {
+                0% {
+                    -webkit-transform:scale(1);
+                }
+                10% { 
+                    /* Start by zooming to full scale */
+                    -webkit-transform:scale(1.25);
+                }
+                20% {
+                    /* Top left corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    2,-2,0,1
+                    );
+                }
+                25% {
+                    /* Left side down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    2,0,0,1
+                    );
+                }
+                30% {
+                    /* Bottom left corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,-0.00015,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    2,2,0,1
+                    );
+                }
+                35% {
+                    /* Bottom down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    0,2,0,1
+                    );
+                }
+                40% {
+                    /* Bottom right corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,0.00015,
+                    0,0,1,0,
+                    -2,2,0,1
+                    );
+                }
+                45% {
+                    /* Right side down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,0,
+                    0,0,1,0,
+                    -2,0,0,1
+                    );
+                }
+                50% {
+                    /* Top right corner down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0.00015,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    -2,-2,0,1
+                    );
+                }
+                55% {
+                    /* Top down */
+                    -webkit-transform: matrix3d(
+                    1.25,0,0.00,0,
+                    0.00,1.25,0.00,-0.00015,
+                    0,0,1,0,
+                    0,-2,0,1
+                    );
+                }
+                60% {
+                    -webkit-transform:scale(1.25);
+                }
+                100% {
+                    -webkit-transform:scale(1.25);
+                }
+            }
+
+
+        </style>
     </head>
     <body>
-        <h1>Wiggle CSS</h1>
-        <p>A css file and class to make stuff wiggle similar to how the new AppleTV show icons wiggle.</p>
-        <p>The wiggle animation is not very refined here, more of a proof of concept, but it could be smoothed out if needed.</p>
-        <p>It's css3 and may not work in all browsers. I've been testing/developing in Firefox, Chrome and Safari on OSX.</p>
-        <p>See also <a href='list.html'>list.html</a> for an example using an unordered list.</p>
         <div class="tvwiggle">
             <div>
                 <div>
                     <a href='#' class="paralax">
-                        <img alt="wiggle" src="img/6.png">
-                        <img alt="wiggle" src="img/6bg.jpg">
+                        <img class="wiggletop" alt="wiggle" src="img/cimbura.png">
+                        <img class="wigglebg" alt="wiggle" src="img/cimbura_bg.jpg">
                     </a>
                 </div>
             </div>

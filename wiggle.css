@@ -7,6 +7,8 @@
 {
     transition: transform 0.5s ease-in;
     transform:scale(1.0);
+    -webkit-transition: transform 0.5s ease-in;
+    -webkit-transform:scale(1.0);
 }
 
 
@@ -33,7 +35,7 @@
     animation-fill-mode: forwards;  
 
     /* Thanks safari */
-    -webkit-animation-name: tvwiggle;
+    -webkit-animation-name: tvwiggleparalax;
     -webkit-animation-duration: 2.5s;
     -webkit-animation-fill-mode: forwards;  
     z-index: 10000;
@@ -50,6 +52,9 @@
  *
  * */
 @keyframes tvwiggleparalax {
+    0% {
+        transform:scale(1);
+    }
     10% { 
         /* Start by zooming to full scale */
         transform:scale(1.25);
@@ -57,12 +62,6 @@
     20% {
         /* Top left corner down */
         transform: matrix3d(
-        1.25,0,0.00,-0.00005,
-        0.00,1.25,0.00,-0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
-        -webkit-transform: matrix3d(
         1.25,0,0.00,-0.00005,
         0.00,1.25,0.00,-0.00005,
         0,0,1,0,
@@ -77,22 +76,10 @@
         0,0,1,0,
         0,0,0,1
         );
-        -webkit-transform: matrix3d(
-        1.25,0,0.00,-0.00005,
-        0.00,1.25,0.00,0,
-        0,0,1,0,
-        0,0,0,1
-        );
     }
     30% {
         /* Bottom left corner down */
         transform: matrix3d(
-        1.25,0,0.00,-0.00005,
-        0.00,1.25,0.00,0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
-        -webkit-transform: matrix3d(
         1.25,0,0.00,-0.00005,
         0.00,1.25,0.00,0.00005,
         0,0,1,0,
@@ -107,22 +94,10 @@
         0,0,1,0,
         0,0,0,1
         );
-        -webkit-transform: matrix3d(
-        1.25,0,0.00,0,
-        0.00,1.25,0.00,0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
     }
     40% {
         /* Bottom right corner down */
         transform: matrix3d(
-        1.25,0,0.00,0.00005,
-        0.00,1.25,0.00,0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
-        -webkit-transform: matrix3d(
         1.25,0,0.00,0.00005,
         0.00,1.25,0.00,0.00005,
         0,0,1,0,
@@ -137,12 +112,6 @@
         0,0,1,0,
         0,0,0,1
         );
-        -webkit-transform: matrix3d(
-        1.25,0,0.00,0.00005,
-        0.00,1.25,0.00,0,
-        0,0,1,0,
-        0,0,0,1
-        );
     }
     50% {
         /* Top right corner down */
@@ -152,22 +121,10 @@
         0,0,1,0,
         0,0,0,1
         );
-        -webkit-transform: matrix3d(
-        1.25,0,0.00,0.00005,
-        0.00,1.25,0.00,-0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
     }
     55% {
         /* Top down */
         transform: matrix3d(
-        1.25,0,0.00,0,
-        0.00,1.25,0.00,-0.00005,
-        0,0,1,0,
-        0,0,0,1
-        );
-        -webkit-transform: matrix3d(
         1.25,0,0.00,0,
         0.00,1.25,0.00,-0.00005,
         0,0,1,0,
@@ -183,6 +140,9 @@
 }
 
 @keyframes tvwiggle {
+    0% {
+        transform:scale(1);
+    }
     10% { 
         /* Start by zooming to full scale */
         transform:scale(1.25);
@@ -266,3 +226,184 @@
         transform:scale(1.25);
     }
 }
+
+
+
+
+
+@-webkit-keyframes tvwiggleparalax {
+    0% {
+        -webkit-transform:scale(1);
+    }
+    10% { 
+        /* Start by zooming to full scale */
+        -webkit-transform:scale(1.25);
+    }
+    20% {
+        /* Top left corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00005,
+        0.00,1.25,0.00,-0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    25% {
+        /* Left side down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00005,
+        0.00,1.25,0.00,0,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    30% {
+        /* Bottom left corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00005,
+        0.00,1.25,0.00,0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    35% {
+        /* Bottom down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0,
+        0.00,1.25,0.00,0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    40% {
+        /* Bottom right corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00005,
+        0.00,1.25,0.00,0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    45% {
+        /* Right side down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00005,
+        0.00,1.25,0.00,0,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    50% {
+        /* Top right corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00005,
+        0.00,1.25,0.00,-0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    55% {
+        /* Top down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0,
+        0.00,1.25,0.00,-0.00005,
+        0,0,1,0,
+        0,0,0,1
+        );
+    }
+    60% {
+        -webkit-transform:scale(1.25);
+    }
+    100% {
+        -webkit-transform:scale(1.25);
+    }
+}
+
+@-webkit-keyframes tvwiggle {
+    0% {
+        -webkit-transform:scale(1);
+    }
+    10% { 
+        /* Start by zooming to full scale */
+        -webkit-transform:scale(1.25);
+    }
+    20% {
+        /* Top left corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00015,
+        0.00,1.25,0.00,-0.00015,
+        0,0,1,0,
+        2,-2,0,1
+        );
+    }
+    25% {
+        /* Left side down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00015,
+        0.00,1.25,0.00,0,
+        0,0,1,0,
+        2,0,0,1
+        );
+    }
+    30% {
+        /* Bottom left corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,-0.00015,
+        0.00,1.25,0.00,0.00015,
+        0,0,1,0,
+        2,2,0,1
+        );
+    }
+    35% {
+        /* Bottom down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0,
+        0.00,1.25,0.00,0.00015,
+        0,0,1,0,
+        0,2,0,1
+        );
+    }
+    40% {
+        /* Bottom right corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00015,
+        0.00,1.25,0.00,0.00015,
+        0,0,1,0,
+        -2,2,0,1
+        );
+    }
+    45% {
+        /* Right side down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00015,
+        0.00,1.25,0.00,0,
+        0,0,1,0,
+        -2,0,0,1
+        );
+    }
+    50% {
+        /* Top right corner down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0.00015,
+        0.00,1.25,0.00,-0.00015,
+        0,0,1,0,
+        -2,-2,0,1
+        );
+    }
+    55% {
+        /* Top down */
+        -webkit-transform: matrix3d(
+        1.25,0,0.00,0,
+        0.00,1.25,0.00,-0.00015,
+        0,0,1,0,
+        0,-2,0,1
+        );
+    }
+    60% {
+        -webkit-transform:scale(1.25);
+    }
+    100% {
+        -webkit-transform:scale(1.25);
+    }
+}
+

@@ -3,6 +3,7 @@
     box-sizing: border-box;
     padding: 40px;
     text-align: center;
+    display: inline-block;
 }
 
 .tvwiggle > div,
@@ -13,8 +14,8 @@
     margin: 0;
     text-align: left;
     padding: 20px;
-    width: 275px;
-    height: 200px;
+    width: 260px;
+    height: 260px;
 }
 
 .tvwiggle > div > *,
